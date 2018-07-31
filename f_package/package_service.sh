@@ -62,7 +62,7 @@ fi
 cp -R ${IMAGE_PATH:-}/* .
 
 echo "delete the image"
-docker rmi -f ${REGISTRY}/${IMAGE_TAG}
+(docker rmi -f ${REGISTRY}/${IMAGE_TAG}) || true
 # docker pull $(awk '/^FROM[ \t\r\n\v\f]/ { print /:/ ? $2 : $2":latest" }' Dockerfile)
 echo "done"
 
