@@ -26,7 +26,7 @@ done
 acceptedPHPCSErrors=${acceptedPHPCSErrors:-0}
 acceptedPHPCSWarnings=${acceptedPHPCSWarnings:-20}
 
-run_cmd "make job-analyse CS_ERRORS=${acceptedPHPCSErrors} CS_WARNING=${acceptedPHPCSWarnings} tools='phpcs-summary'"
+run_cmd "make job-analyse-static CS_ERRORS=${acceptedPHPCSErrors} CS_WARNING=${acceptedPHPCSWarnings} tools='cs-summary'"
 
 nbErrors=$(cat "${STDOUT_LOG_FILE}" | (grep -E '[0-9]+ error' -o || true) | grep -E '[0-9]+' -o || true)
 nbWarnings=$(cat "${STDOUT_LOG_FILE}" | (grep -E '[0-9]+ warning' -o || true) | grep -E '[0-9]+' -o || true)

@@ -20,7 +20,7 @@ for option in "$@"; do
 done
 acceptedPHPLintErrors=${acceptedPHPLintErrors:-0}
 
-run_cmd "make verify"
+run_cmd "make verify-normal"
 
 nbErrors=$(cat "${STDOUT_LOG_FILE}" | (grep -E '[0-9]+ ERRORS' -o || true) | grep -E '[0-9]+' -o || true)
 
