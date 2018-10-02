@@ -137,7 +137,7 @@ export STDERR_LOG_FILE=${STDERR_LOG_FILE:-/tmp/.pipeline.stderr.log} # Variable 
 export VERBOSE=${VERBOSE:-1}                          # Variable that can be overwritten by option -v or --verbose.
 
 export PROJECT_NAME=${PROJECT_NAME:-}                 # Name of the project
-export SUFFIX_VS=${SUFFIX_VS:-v2}
+export SUFFIX_VS=${SUFFIX_VS:-swarm}
 export ENVIRONMENT_TYPE=${ENVIRONMENT_TYPE:-preprod}  # Variable that can be overwritten by option -e or --environment-type.
 export INFRA_ENV="${SERVICE}-${ENVIRONMENT_TYPE}"
 
