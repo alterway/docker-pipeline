@@ -210,6 +210,14 @@ show_help-package:package_service()
         "\033[33mOptional\033[0m\n\t" \
         "build args used to create image." \
         "Defaults to an empty string.\n"
+    echo -e "  --job-image-path-copy\n\t"\
+        "\033[33mOptional\033[0m\n\t" \
+        "Value to 1 to indicate the copy of the directory content of the Dockerfile to the path indicated by the value --job-image-path-copy-target before build it." \
+        "Defaults to not copy it before.\n"
+    echo -e "  --job-image-path-copy-target\n\t"\
+        "\033[33mOptional\033[0m\n\t" \
+        "Path value to copy directory content of the Dockerfile." \
+        "Defaults to an empty string.\n"
 }
 
 show_help-deploy:delete_service()
