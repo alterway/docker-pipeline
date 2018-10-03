@@ -6,6 +6,7 @@
 # Parameters:
 #   --job-phpcs-error: Number of PHP_CodeSniffer errors accepted before declaring the job as status error. (defaults: 0)
 #   --job-phpcs-warning: Number of PHP_CodeSniffer warnings accepted before declaring the job as status error. (defaults: 20)
+#   --job-phpcs-ruleset-file: Path of a specific CodeSniffer ruleset file
 #
 write_info "# JOB: code_review"
 show_help-verify:code_review
@@ -18,6 +19,10 @@ for option in "$@"; do
         ;;
         --job-phpcs-warning=*)
             acceptedPHPCSWarnings="${option#*=}"
+            shift
+        ;;
+        --job-phpcs-ruleset-file=*)
+            export CS_RULESET="${option#*=}"
             shift
         ;;
         *) shift ;;
@@ -51,4 +56,6 @@ if [ ! -z ${nbErrors} ] && [ ! -z ${nbWarnings} ]; then
 else
     finalOutputError+=("Fatal error: The job has failed.");
     finalOutputError+=("Look the STDERR content for more information.");
+    finalOutputError+=("A total of ${nbErrors} have been found.");
+    finalOutputError+=("A total of ${nbWarnings} have been found.");
 fi
