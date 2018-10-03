@@ -17,26 +17,6 @@ finalOutputError=()
 
 for option in "$@"; do
     case ${option} in
-        -c=*|--ci-build-ref-name=*)
-            export CI_COMMIT_REF_NAME="${option#*=}"
-            shift
-        ;;
-        -dv=*|--deploy-version=*)
-            export SUFFIX_VS="${option#*=}"
-            shift
-        ;;
-        -e=*|--environment-type=*)
-            export ENVIRONMENT_TYPE="${option#*=}"
-            shift
-        ;;
-        -dm=*|--domain=*)
-            export DOMAIN="${option#*=}"
-            shift
-        ;;
-        -sdm=*|--subdomain=*)
-            export SUBDOMAIN="${option#*=}"
-            shift
-        ;;
         -h|--help)
             show_help
             exit 0
@@ -71,20 +51,48 @@ for option in "$@"; do
             show_job_list
             exit 0
         ;;
-        -p=*|--php-cmd=*)
-            export PHP_NAME_VALUE="${option#*=}"
+        -r=*|--registry=*)
+            export REGISTRY="${option#*=}"
+            shift
+        ;;
+        -dm=*|--domain=*)
+            export DOMAIN="${option#*=}"
+            shift
+        ;;
+        -sdm=*|--subdomain=*)
+            export SUBDOMAIN="${option#*=}"
             shift
         ;;
         -pn=*|--project-name=*)
             export PROJECT_NAME="${option#*=}"
             shift
         ;;
-        -r=*|--registry=*)
-            export REGISTRY="${option#*=}"
-            shift
-        ;;
         -s=*|--service=*)
             export SERVICE="${option#*=}"
+            shift
+        ;;
+        -dv=*|--deploy-version=*)
+            export SUFFIX_VS="${option#*=}"
+            shift
+        ;;
+        -e=*|--environment-type=*)
+            export ENVIRONMENT_TYPE="${option#*=}"
+            shift
+        ;;
+        -p=*|--php-cmd=*)
+            export PHP_NAME_VALUE="${option#*=}"
+            shift
+        ;;
+        -ps=*|--php-cmd-analyse-source=*)
+            export ANALYSE_PATH="${option#*=}"
+            shift
+        ;;
+        -pt=*|--php-cmd-analyse-target=*)
+            export ANALYSE_PROJET_ENV="${option#*=}"
+            shift
+        ;;
+        -c=*|--ci-build-ref-name=*)
+            export CI_COMMIT_REF_NAME="${option#*=}"
             shift
         ;;
         -U=*|--UCP=*)
@@ -145,6 +153,6 @@ export CI_COMMIT_REF_NAME=$(slugify "${CI_COMMIT_REF_NAME:-}")
 export PHP_NAME_VALUE=${PHP_NAME_VALUE:-cmd}          # Variable that can be overwritten by option -p or --php-cmd.
 
 export LABEL_UCP=${LABEL_UCP:-}                       # Variable that can be overwritten by option -U or --UCP. ex: --UCP="com.docker.ucp.access.label=prod"
-export REGISTRY=${REGISTRY:-hub.alterway.fr}
+export REGISTRY=${REGISTRY:-hub.alterway.fr/build}
 export DOMAIN=${DOMAIN:-}
 export SUBDOMAIN=${SUBDOMAIN:-}

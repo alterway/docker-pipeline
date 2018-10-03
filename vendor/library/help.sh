@@ -18,6 +18,10 @@ show_help()
     echo -e "  -j, --job\n\tName of the job the pipeline must execute. Format must be 'stage:job' (Ex: verify:smoke).\n"
     echo -e "  -l, --list\n\tDisplay the list of jobs.\n"
     echo -e "  -p, --php-cmd\n\tName of the PHP command to use through the whole pipeline. Defaults to 'cmd'.\n"
+
+    echo -e "  -ps, --php-cmd-analyse-source\n\tSource path from root project where you want to parse files. Default is defined in the main Makefile project\n"
+    echo -e "  -pt, --php-cmd-analyse-target\n\tTarget path wher you want to write result files. Default is defined in the main Makefile project.\n"
+
     echo -e "  -r, --registry\n\tCombined with option --environment-type." \
         "URL of the hub registry where all docker images are stored.\n" \
     echo -e "  -s, --service\n\tName of the service that defines the context execution of the pipeline.\n"
@@ -56,6 +60,10 @@ show_help-verify:code_review()
         "\033[33mOptional\033[0m\n\t" \
         "Number of PHP_CodeSniffer warnings accepted before declaring the job as status error." \
         "Defaults to 20.\n"
+    echo -e "  --job-phpcs-ruleset-file\n\t" \
+        "\033[33mOptional\033[0m\n\t" \
+        "Path of a specific CodeSniffer ruleset file." \
+        "Defaults is the ruleset inside the provisionning project.\n"
 }
 
 show_help-verify:smoke()
@@ -469,7 +477,13 @@ show_help-deploy:prepare_services()
 show_help-deploy:verify_deploy()
 {
     echo -e "Usage: ${__file} -j|--job=deploy:verify_deploy -s|--service=SERVICE [-lvV][-dehIprU12=]\n"
-    echo -e "Description: Verify if containers of a specific service are deployed.\n"
+    echo -e "Description: Verify if containers of a specific service are deployed correctly.\n"
+}
+
+show_help-deploy:verify_deploy_swarm()
+{
+    echo -e "Usage: ${__file} -j|--job=deploy:verify_deploy_swarm -s|--service=SERVICE [-lvV][-dehIprU12=]\n"
+    echo -e "Description: Verify if services of a docker stack are deployed correctly.\n"
 }
 
 show_help-after_script:clean_up()
