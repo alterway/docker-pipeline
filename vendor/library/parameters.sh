@@ -145,6 +145,6 @@ export CI_COMMIT_REF_NAME=$(slugify "${CI_COMMIT_REF_NAME:-}")
 export PHP_NAME_VALUE=${PHP_NAME_VALUE:-cmd}          # Variable that can be overwritten by option -p or --php-cmd.
 
 export LABEL_UCP=${LABEL_UCP:-}                       # Variable that can be overwritten by option -U or --UCP. ex: --UCP="com.docker.ucp.access.label=prod"
-export REGISTRY=${REGISTRY:-hub.alterway.fr/build}
+export REGISTRY=${REGISTRY:-hub.alterway.fr}
 export DOMAIN=${DOMAIN:-}
 export SUBDOMAIN=${SUBDOMAIN:-}

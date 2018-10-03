@@ -51,4 +51,6 @@ if [ ! -z ${nbErrors} ] && [ ! -z ${nbWarnings} ]; then
 else
     finalOutputError+=("Fatal error: The job has failed.");
     finalOutputError+=("Look the STDERR content for more information.");
+    finalOutputError+=("A total of ${nbErrors} have been found.");
+    finalOutputError+=("A total of ${nbWarnings} have been found.");
 fi

@@ -75,5 +75,6 @@ fi
 # we create network
 #if [ ! "$(docker network ls | grep -w ${NETWORK_NAME})" ]; then
 echo "we create the ${NETWORK_NAME} network"
+echo "CMD:: docker network create ${NETWORK_ENCRYPT} --driver=${NETWORK_DRIVER} ${NETWORK_ATTACHABLE} ${NETWORK_SUBNET} ${NETWORK_LABELS} --label com.docker.stack.namespace=${PROJECT_NAME} ${NETWORK_NAME}"
 (docker network create ${NETWORK_ENCRYPT} --driver=${NETWORK_DRIVER} ${NETWORK_ATTACHABLE} ${NETWORK_SUBNET} ${NETWORK_LABELS} --label com.docker.stack.namespace=${PROJECT_NAME} ${NETWORK_NAME})  || true ;
 #fi

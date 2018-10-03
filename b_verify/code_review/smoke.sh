@@ -20,7 +20,7 @@ for option in "$@"; do
 done
 acceptedPHPLintErrors=${acceptedPHPLintErrors:-0}
 
-run_cmd "make verify-normal"
+run_cmd "make verify tools=normal"
 
 nbErrors=$(cat "${STDOUT_LOG_FILE}" | (grep -E '[0-9]+ ERRORS' -o || true) | grep -E '[0-9]+' -o || true)
 
@@ -38,4 +38,5 @@ if [ ! -z ${nbErrors} ]; then
 else
     finalOutputError+=("Fatal error: The job has failed.");
     finalOutputError+=("Look the STDERR content for more information.");
+    finalOutputError+=("A total of ${nbErrors} have been found.");
 fi
